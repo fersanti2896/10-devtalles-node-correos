@@ -1,4 +1,3 @@
-import { envs } from './plugins/envs.plugin';
 import 'dotenv/config'
 import { Server } from './presentation/server';
 
@@ -8,5 +7,4 @@ import { Server } from './presentation/server';
 
 function main() {
     Server.start();
-    // console.log( envs )
 }

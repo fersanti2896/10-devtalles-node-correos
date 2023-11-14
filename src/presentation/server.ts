@@ -1,3 +1,4 @@
+import { SendEmailLogs } from '../domain/use-cases/email/send-email-logs';
 import { FileSystemDatasource } from '../infrastructure/datasources/file-system.datasource';
 import { LogRepositoryImpl } from '../infrastructure/repositories/log.repository.impl';
 import { CronService } from './cron/cron-service';
@@ -8,15 +9,14 @@ const fileSystemLogRepository = new LogRepositoryImpl(
     new FileSystemDatasource()
 );
 
+const emailService = new EmailService();
+
 export class Server {
     public static start() {
         console.log('Server started...')
 
         /* Mandando email */
-        const emailService = new EmailService(fileSystemLogRepository)
-        emailService.sendEmailWithFileSystemLogs(
-            ['fersanti2896@gmail.com']
-        );
+        // new SendEmailLogs(emailService, fileSystemLogRepository).execute(['fersanti2896@gmail.com']);
         
         // CronService.createJob( 
         //     '*/5 * * * * *',
